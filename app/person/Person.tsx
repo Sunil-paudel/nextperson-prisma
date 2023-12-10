@@ -10,7 +10,8 @@ interface PersonProps {
 
 const Person: React.FC<PersonProps> = ({ id, firstname, lastname, phone }) => {
     const [personData, setPersonData] = useState<PersonProps[]>([]);
-    const [showForm, setShowForm] = useState(false);
+    const [showEditForm, setShowEditForm] = useState(false);
+    const [showCreateForm, setShowCreateForm] = useState(false);
     const [formData, setFormData] = useState<PersonProps>({
         id: 0,
         firstname: '',
@@ -45,7 +46,7 @@ const Person: React.FC<PersonProps> = ({ id, firstname, lastname, phone }) => {
 
     const handleEdit = (person: PersonProps) => {
         setFormData(person);
-        setShowForm(true);
+        setShowEditForm(true);
     };
 
     const handleCreate = () => {
@@ -55,7 +56,7 @@ const Person: React.FC<PersonProps> = ({ id, firstname, lastname, phone }) => {
             lastname: '',
             phone: '',
         });
-        setShowForm(true);
+        setShowCreateForm(true);
     };
 
     const handleSubmit = async (event: React.FormEvent) => {
@@ -80,7 +81,8 @@ const Person: React.FC<PersonProps> = ({ id, firstname, lastname, phone }) => {
                 });
             }
 
-            setShowForm(false);
+            setShowEditForm(false);
+            setShowCreateForm(false);
             fetchData(); // Fetch data after successful POST or PUT
         } catch (error) {
             console.error('Error creating/updating person:', error);
@@ -117,7 +119,7 @@ const Person: React.FC<PersonProps> = ({ id, firstname, lastname, phone }) => {
                 </tbody>
             </table>
 
-            {showForm && (
+            {showEditForm && (
                 <form onSubmit={handleSubmit}>
                     <input
                         type="text"
@@ -135,6 +137,27 @@ const Person: React.FC<PersonProps> = ({ id, firstname, lastname, phone }) => {
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     />
                     <button type="submit">Save</button>
+                </form>
+            )}
+
+            {showCreateForm && (
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        value={formData.firstname}
+                        onChange={(e) => setFormData({ ...formData, firstname: e.target.value })}
+                    />
+                    <input
+                        type="text"
+                        value={formData.lastname}
+                        onChange={(e) => setFormData({ ...formData, lastname: e.target.value })}
+                    />
+                    <input
+                        type="text"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    />
+                    <button type="submit">Create</button>
                 </form>
             )}
 
