@@ -101,6 +101,7 @@ const Person: React.FC = () => {
 
   return (
     <div className="container">
+      <Button onClick={handleCreate}>Add person</Button>
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
@@ -192,7 +193,7 @@ const Person: React.FC = () => {
           <Button onClick={() => setShowCreateForm(false)}>Cancel</Button>
         </form>
       )}
-      <Button onClick={handleCreate}>Create</Button>
+      
     </div>
   );
 };
