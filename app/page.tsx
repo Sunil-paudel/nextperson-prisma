@@ -6,7 +6,7 @@ export default function Home() {
     <div>
       <Header title="People list" />
       <div className="mt-8">
-        <PersonTable id={0} firstname={''} lastname={''} phone={''} />
+        <PersonTable  />
       </div>
     </div>
   );
