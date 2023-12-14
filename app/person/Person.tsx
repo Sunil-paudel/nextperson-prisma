@@ -101,6 +101,47 @@ const Person: React.FC = () => {
 
   return (
     <div className="container">
+        {showCreateForm && (
+        <form onSubmit={handleSubmit} style={{ zIndex: 2, position: 'relative' }}>
+          <TableHead>
+  <TableRow>
+    <TableCell>
+      <Typography variant="h6" fontWeight="bold">
+        First Name
+      </Typography>
+    </TableCell>
+    <TableCell>
+      <Typography variant="h6" fontWeight="bold">
+        Last Name
+      </Typography>
+    </TableCell>
+    <TableCell>
+      <Typography variant="h6" fontWeight="bold">
+        Phone
+      </Typography>
+    </TableCell>
+  </TableRow>
+</TableHead>
+
+          <input
+            type="text"
+            value={formData.firstname}
+            onChange={(e) => setFormData({ ...formData, firstname: e.target.value })}
+          />
+          <input
+            type="text"
+            value={formData.lastname}
+            onChange={(e) => setFormData({ ...formData, lastname: e.target.value })}
+          />
+          <input
+            type="text"
+            value={formData.phone}
+            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+          />
+          <Button type="submit">Create</Button>
+          <Button onClick={() => setShowCreateForm(false)}>Cancel</Button>
+        </form>
+      )}
       <Button onClick={handleCreate}>Add person</Button>
       <TableContainer component={Paper}>
         <Table>
@@ -134,66 +175,67 @@ const Person: React.FC = () => {
                 <TableCell>{person.firstname}</TableCell>
                 <TableCell>{person.lastname}</TableCell>
                 <TableCell>{person.phone}</TableCell>
+              
                 <TableCell>
                   <Button variant="outlined" color="secondary" onClick={() => handleDelete(person.id)}>
                     Delete
                   </Button>
                   <Button onClick={() => handleEdit(person)}>Edit</Button>
+                  
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
+        
       </TableContainer>
 
-      {showEditForm && (
-        <form onSubmit={handleSubmit} style={{ zIndex: 2, position: 'relative' }}>
-          <input
-            type="text"
-            value={formData.firstname}
-            onChange={(e) => setFormData({ ...formData, firstname: e.target.value })}
-          />
-          <input
-            type="text"
-            value={formData.lastname}
-            onChange={(e) => setFormData({ ...formData, lastname: e.target.value })}
-          />
-          <input
-            type="text"
-            value={formData.phone}
-            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-          />
-          <Button
-            type="submit"
-          >
-            Save
-          </Button>
-          <Button onClick={() => setShowEditForm(false)}>Cancel</Button>
-        </form>
-      )}
-
-      {showCreateForm && (
-        <form onSubmit={handleSubmit} style={{ zIndex: 2, position: 'relative' }}>
-          <input
-            type="text"
-            value={formData.firstname}
-            onChange={(e) => setFormData({ ...formData, firstname: e.target.value })}
-          />
-          <input
-            type="text"
-            value={formData.lastname}
-            onChange={(e) => setFormData({ ...formData, lastname: e.target.value })}
-          />
-          <input
-            type="text"
-            value={formData.phone}
-            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-          />
-          <Button type="submit">Create</Button>
-          <Button onClick={() => setShowCreateForm(false)}>Cancel</Button>
-        </form>
-      )}
       
+
+    
+      {showEditForm && (
+    <form onSubmit={handleSubmit} style={{ zIndex: 2, position: 'relative' }}>
+      <TableHead>
+        <TableRow>
+          <TableCell>
+            <Typography variant="h6" fontWeight="bold">
+              First Name
+            </Typography>
+          </TableCell>
+          <TableCell>
+            <Typography variant="h6" fontWeight="bold">
+              Last Name
+            </Typography>
+          </TableCell>
+          <TableCell>
+            <Typography variant="h6" fontWeight="bold">
+              Phone
+            </Typography>
+          </TableCell>
+        </TableRow>
+      </TableHead>
+
+      <input
+        type="text"
+        value={formData.firstname}
+        onChange={(e) => setFormData({ ...formData, firstname: e.target.value })}
+      />
+      <input
+        type="text"
+        value={formData.lastname}
+        onChange={(e) => setFormData({ ...formData, lastname: e.target.value })}
+      />
+      <input
+        type="text"
+        value={formData.phone}
+        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+      />
+      <Button type="submit">
+        Save
+      </Button>
+      <Button onClick={() => setShowEditForm(false)}>Cancel</Button>
+    </form>
+  )}
     </div>
   );
 };
