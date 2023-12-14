@@ -1,5 +1,5 @@
 import PersonTable from './person/Person';
-import Header from '@/component/Header';
+import Header from '@/component/Header/page.tsx';
 
 export default function Home() {
   return (
