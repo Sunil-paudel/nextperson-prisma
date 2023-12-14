@@ -1,5 +1,5 @@
 import PersonTable from './person/Person';
-import Header from '@/component/Header/page';
+import Header from '@/component/Header';
 
 export default function Home() {
   return (
