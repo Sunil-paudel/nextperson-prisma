@@ -1,4 +1,5 @@
-import React from 'react';
+"use client"
+    import React from 'react';
 import styles from 'page.module.css';
 
 interface HeaderProps {
