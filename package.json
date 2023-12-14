@@ -7,7 +7,6 @@
     "build": "npx prisma generate && npx prisma migrate deploy && next build",
     "start": "next start",
     "lint": "next lint",
-    "preinstall": "nvm install && nvm use"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
